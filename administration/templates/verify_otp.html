@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block css %}
+<style>
+/* General body styling for background and centering */
+body {
+    background-color: transparent;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* Main container for the form */
+.main1 {
+    background-color: #FFFFFF;
+    width: 400px;
+    padding: 30px;
+    margin: 7em auto;
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    text-align: center;
+}
+
+/* Title styling */
+.sign {
+    color: #6107f1;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+/* Input field styling */
+.un {
+    width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.un:focus {
+    border: 2px solid rgba(0, 0, 0, 0.18) !important;
+}
+
+/* Submit button styling */
+.submit {
+    cursor: pointer;
+    border-radius: 5em;
+    color: #fff;
+    background: linear-gradient(to right, #9C27B0, #E040FB);
+    border: 0;
+    padding: 10px 30px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    margin-top: 20px;
+}
+
+.submit:hover {
+    background: linear-gradient(to right, #8B23A8, #D030F8);
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 600px) {
+    .main1 {
+        width: 90%;
+        border-radius: 0.5em;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="main1">
+    <p class="sign" align="center">Verify OTP</p>
+    <form class="form1" method="POST">
+        {% csrf_token %}
+        <input class="un" type="text" id="username" name="username" placeholder="Username" value="{{username}}" required>
+        <input class="un" type="text" id="otp" name="otp" placeholder="Enter OTP" required>
+        <button class="submit" type="submit">Verify OTP</button>
+    </form>
+
+    {% if messages %}
+    <div class="messages">
+    {% for message in messages %}
+    <p style="color: red;">{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+</div>
+
+</div>
+{% endblock %}

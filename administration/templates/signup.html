@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block css %}
+<style>
+body {
+    background-color: transparent;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.custom-form-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.custom-form-wrapper {
+    background-color: #FFFFFF;
+    width: 400px;
+    max-width: 90%;
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.custom-form-wrapper h2 {
+    color: #6107f1;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+.custom-input-field input {
+    width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 27px;
+    text-align: center;
+    margin: 0 auto 27px auto;
+    display: block;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.custom-input-field input:focus {
+    border: 2px solid rgba(0, 0, 0, 0.18);
+}
+
+button[type="submit"] {
+    cursor: pointer;
+    border-radius: 5em;
+    color: #fff;
+    background: linear-gradient(to right, #9C27B0, #E040FB);
+    border: 0;
+    padding: 10px 40px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    margin-top: 20px;
+}
+
+.terms {
+    font-size: 12px;
+    color: #E1BEE7;
+    margin-top: 15px;
+}
+
+.terms a {
+    color: #2f0fe4;
+    text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .custom-form-wrapper {
+        border-radius: 0px;
+        width: 90%;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="custom-form-body">
+    <div class="custom-form-wrapper">
+        <h2>Sign Up</h2>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="custom-input-field">
+                {{ form.fullname }}
+                {{ form.fullname.errors }}
+            </div>
+            <div class="custom-input-field">
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+            <div class="custom-input-field">
+                {{ form.username }}
+                {{ form.username.errors }}
+            </div>
+            <div class="custom-input-field">
+                {{ form.phone_number }}
+                {{ form.phone_number.errors }}
+            </div>
+            <div class="custom-input-field">
+                {{ form.password }}
+                {{ form.password.errors }}
+            </div>
+            <div class="custom-input-field">
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="terms">
+            By signing up, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
+        </div>
+    </div>
+</div>
+{% endblock %}
